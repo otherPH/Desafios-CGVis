@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <head>
+        <title>Composição com Canvas 2D </title>
+    </head>
+
+    <body>
+
+    <p>
+        Composição de Vermelho, Azul e Amarelo com Canvas 2D
+    </p>
+
+    <div>
+        <canvas id="canvas" width="800" height="600">
+            Ops! Este conteúdo não foi aceito pelo navegador.
+        </canvas>
+
+        <script>
+            const canvas = document.getElementById("canvas");
+            var pincel = canvas.getContext("2d");
+
+            // retângulos
+            pincel.fillStyle = '#f20d0d'; // vermelho
+            pincel.fillRect(10, 10, 40, 120);
+            pincel.fillRect(225, 10, 275, 290);
+            pincel.fillRect(500, 300, 75, 120);            
+            
+            pincel.fillStyle = '#fae218'; // amarelo
+            pincel.fillRect(50, 130, 25, 170);
+            pincel.fillRect(500, 130, 75, 170);
+            pincel.fillRect(225, 300, 125, 120);
+
+            pincel.fillStyle = '#0c84be'; // azul
+            pincel.fillRect(25, 330, 175, 25);
+            pincel.fillRect(25, 470, 450, 25);
+
+
+            // linhas
+            // horizontais
+            pincel.strokeStyle = 'Black';
+            pincel.lineWidth = 8;
+            pincel.beginPath();
+            pincel.moveTo(10, 130);
+            pincel.lineTo(225, 130);
+
+            pincel.moveTo(500, 130);
+            pincel.lineTo(800, 130);
+            
+            pincel.moveTo(10, 300);
+            pincel.lineTo(800, 300);
+
+            pincel.moveTo(10, 420);
+            pincel.lineTo(800, 420);
+            pincel.stroke()
+
+            // verticais
+            pincel.strokeStyle = 'Black';
+            pincel.lineWidth = 5;
+            pincel.beginPath();
+            
+            pincel.moveTo(50, 10);
+            pincel.lineTo(50, 600);
+
+            pincel.moveTo(75, 10);
+            pincel.lineTo(75, 600);
+
+            pincel.moveTo(100, 10);
+            pincel.lineTo(100, 600);
+
+            pincel.moveTo(150, 10);
+            pincel.lineTo(150, 600);
+
+            pincel.moveTo(225, 10);
+            pincel.lineTo(225, 600);
+
+            pincel.moveTo(350, 300);
+            pincel.lineTo(350, 600);
+
+            pincel.moveTo(725 - 75, 10);
+            pincel.lineTo(725 - 75, 600);
+
+            pincel.moveTo(725 - 100, 10);
+            pincel.lineTo(725 - 100, 600);
+
+            pincel.moveTo(725 - 150, 10);
+            pincel.lineTo(725 - 150, 600);
+
+            pincel.moveTo(725 - 225, 10);
+            pincel.lineTo(725 - 225, 600);
+            pincel.stroke()
+
+
+
+            // moldura
+            pincel.fillStyle = 'Black'
+            pincel.fillRect(0, 0, 10, 600); // latertal esquerda
+            pincel.fillRect(0, 0, 800, 10); // superior
+            pincel.fillRect(790, 0, 10, 600); // latertal direita
+            pincel.fillRect(0, 590, 800, 10); // inferior
+            
+
+            // retângulos transgressores
+            pincel.fillStyle = '#0c84be'
+            pincel.transform(0.5, - 0.87, 1, 0.87, 0.5, 1); // rotação de ~60 graus
+            pincel.fillRect(235, 550, 163, 25);
+            pincel.fillRect(5, 650, 160, 33);
+
+        </script>
+    </div>
+    <p>
+        Por: Pedro Henrique Barbosa da Silva
+    </p>
+    <p>
+        Inspirado pelas obras de Piet Mondrian.
+    </p>
+
+    </body>
+</html>
