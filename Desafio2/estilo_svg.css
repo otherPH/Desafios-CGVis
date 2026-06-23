@@ -1,0 +1,36 @@
+body {
+    width: 800px;
+    height: 600px;
+    background-color: #dfdfdf;
+}
+
+@keyframes spin{
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes cores_animadas {
+  0%   {background-color: #dfdfdf;}
+  25%  {background-color: yellow;}
+  50%  {background-color: blue;}
+  100% {background-color: green;}
+}
+
+.caixa-giratoria:hover {
+    transform-origin: center;
+    animation-name: spin;
+    animation-duration: 0.7s;
+    animation-iteration-count: 10;
+}
+
+.bandeira {
+    animation-name: cores_animadas;
+    animation-duration: 4s;
+    animation-iteration-count: 2;
+    transform-origin: 50% 50%;
+}
+

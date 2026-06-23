@@ -4,33 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Desafio 2</title>
-    <link rel="stylesheet" href="objetos_svg.css">
+    <link rel="stylesheet" href="estilo_svg.css">
 </head>
 <body>
     <div>
         <h1>Desafio 2:</h1>
         <h2>Transformações em SVG</h2>
     </div>
-    <svg id="bandeira" width = "800" heigh = "800" viewBox = "0 0 500 500">
-    <g id="verde"
-        fill="#39ac39"
-        transform="matrix(7 0.8 0.6 7 0.6 0.8)">
-        <rect width="100" height="100"/>
-    </g>
-    
-    <g id="amarelo"
-        fill="#ffef00"
-        transform="matrix(1 0 0 1 0 0)">
-        <rect width="100" height="100"/>
-    </g>
 
-    <g id="azul">
-        <circle cx = "200" cy = "200" r = "80" style = "fill:blue;"/>
-    </g>
-    </svg>
+
+    <div>
+        <svg
+            class="bandeira"
+            id="bandeira"
+            width = "600" 
+            heigh = "600" 
+            viewBox = "0 0 800 600">
+        
+        <g 
+            id="verde"
+            fill="#39ac39"
+            transform="matrix(7.75 0 0 5.75 12.5 12.5)"> // proporção e deslocamento
+            <rect width="100" height="100"/>
+        </g>    
+        
+        <g  class="caixa-giratoria"
+            id="amarelo"
+            fill="#ffef00">
+            <rect width="100" height="100" transform="matrix(3 0 1 3 195 145)"/>  // distorção e rotação
+        </g>
+
+        <g 
+            id="azul"
+            fill="blue">
+            <circle cx = "400" cy = "300" r = "80"/>
+        </g>
+        </svg>
+    </div>
     
     <div>
-        <h4>Por Pedro Henrique Barbosa da Silva</h4>
+        <h4>Bandeira SVG - Pedro Henrique Barbosa da Silva</h4>
     </div>
     <div>
         <footer>Sobre o uso de IA: não foi utilizada nenhuma ferramenta de IA.</footer>
