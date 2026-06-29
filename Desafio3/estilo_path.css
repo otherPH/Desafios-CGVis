@@ -1,0 +1,15 @@
+body {
+    width: 800px;
+    height: 600px;
+    background-color: #ffffdf;
+}
+
+.rectb {
+    background-image:"rect_b.svg";
+    
+}
+
+.trib {
+    background-image:"tri_b.svg";
+
+}
