@@ -7,6 +7,30 @@
     <link rel="stylesheet" href="estilo_path.css">
 </head>
 <body>
-    <button class="rectb" width="150" height="80"> Aperte </button>
+    <h1>Desafio <button id="button1"> <h1>3</h1> </button></h1>
+    <h3>Utilizando o path do SVG</h3>
+    <button id="button2" onclick="movimento">Estica</button>
+    <button id="button2">Aumenta</button>
+
+    <div>
+        <script>
+            var a = 85;
+            function movimento() {
+                a = 100
+            }
+        </script>
+
+        <svg viewBox="0 0 240 240">
+        <path d="M 5,30
+           A 20,20 0,0,1 50,30
+           A 20,20 0,0,1 95,30
+           Q 95,60 50,a
+           Q 5,60 5,30 z"></path>
+        </svg>
+    </div>
+    <div>
+        
+    </div>
+    
 </body>
 </html>

@@ -1,15 +1,80 @@
 body {
+    padding: 5%;
     width: 800px;
     height: 600px;
-    background-color: #ffffdf;
+    background-color: rgb(193, 255, 191);
+}
+
+#button1 {
+    border-radius: 20px;
+    border: transparent;
+    color: black;
+    background-image: url("tri_b.svg");
+    background-color: transparent;
+    background-size: 64px 59px;
+    width: 60px;
+    height: 59px;
+    background-repeat: no-repeat;
+}
+
+#button1:active {
+    transform: scale(1.18);
+    animation-name: spin;
+    animation-duration: 0.8s;
+    animation-iteration-count: 1
+}
+
+#button1:hover {
+    cursor: pointer;
+    transform-origin: center;
+    animation-name: spin;
+    animation-duration: 0.2s;
+    animation-iteration-count: 1;
+}
+
+#button2 {
+    font-size: 16px;
+    font-family: Courier New, monospace;
+    border-radius: 20px;
+    border: transparent;
+    color: black;
+    background-image: url("rect_b.svg");
+    background-color: transparent;
+    background-size: 95px 50px;
+    width: 100px;
+    height: 50px;
+    background-repeat: no-repeat;
+}
+
+#button2:active {
+    transform: scale(1.18);
+    animation-name: spin;
+    animation-duration: 0.8s;
+    animation-iteration-count: 1
+
+}
+
+#button2:hover {
+    cursor: pointer;
+    transform-origin: center;
+    animation-name: spin;
+    animation-duration: 0.2s;
+    animation-iteration-count: 1;
+}
+
+@keyframes spin{
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(10deg);
+    }
 }
 
 .rectb {
-    background-image:"rect_b.svg";
-    
+    background: url("rect_b.svg") no-repeat;
 }
 
 .trib {
-    background-image:"tri_b.svg";
-
+    background: url("tri_b.svg") no-repeat;
 }
