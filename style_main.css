@@ -2,21 +2,24 @@
 Uma alteração do style_path.css trazendo o estilo do Desafio3 para o index.
 */
 body {
-    padding: 5%;
-    width: 800px;
+    padding: 1%;
+    width: 900px;
     height: 600px;
     background-color: rgb(249, 249, 230);
 }
 
 #button1 {
+    font-size: 13px;
+    font-family: 'Courier New', monospace;
+    padding-left: 4%;
     border-radius: 20px;
     border: transparent;
     color: black;
     background-image: url("Desafio3/tri_b.svg");
     background-color: transparent;
-    background-size: 64px 59px;
-    width: 60px;
-    height: 59px;
+    background-size: 180px 200px;
+    width: 150px;
+    height: 188px;
     background-repeat: no-repeat;
 }
 
@@ -36,16 +39,16 @@ body {
 }
 
 #button2 {
-    font-size: 16px;
+    font-size: 18px;
     font-family: 'Courier New', monospace;
     border-radius: 20px;
     border: transparent;
     color: black;
     background-image: url("Desafio3/rect_b.svg");
     background-color: transparent;
-    background-size: 95px 50px;
-    width: 100px;
-    height: 50px;
+    background-size: 155px 100px;
+    width: 160px;
+    height: 100px;
     background-repeat: no-repeat;
 }
 
