@@ -1,5 +1,6 @@
 const canvas2 = document.getElementById("Canvas2");
 const render2 = canvas2.getContext("2d");
+const W = canvas.width, H = canvas.height;
 
 // Versão do Claude utilizando aritmética de intervalos
 
@@ -69,13 +70,41 @@ function percorrer_quadtree(x, y, profundidade, profundidade_maxima, f) {
         if (profundidade > 0) {
             percorrer_quadtree(qx, qy, profundidade - 1, profundidade_maxima, f);
         } else {
-            render2.fillStyle = "black";
+            render2.fillStyle = "green";
             render2.fillRect(qx, qy, tam, tam);
         }
     }
     return [x, y, tam];
 }
 
+const dt = 60;
 const f_implicita = desenhar_arco;
-const profundo = 3;
-percorrer_quadtree(0, 0, profundo, profundo, f_implicita)
+const prof_max = 10;
+
+let t = 0;
+let prof = 0;
+
+// Adaptação da simulação física para animar conforme a profundidade
+function passo(implicita) {
+    percorrer_quadtree(0, 0, prof, prof, implicita);
+    prof += 1;
+}
+
+function apaga() {
+  render2.clearRect(0, 0, W, H);
+}
+
+function loop() {
+    t += 1;
+    if (t >= dt) {
+        apaga();
+        passo(f_implicita);
+        t = 0;
+    }
+    if (prof_max == prof ) {
+        prof = 0;
+    }
+    requestAnimationFrame(loop);
+}
+
+loop();

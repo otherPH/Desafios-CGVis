@@ -1,7 +1,7 @@
 // Simulação gravitacional (estrutura base reproduzida de IA e adaptada para fins de aprendizado)
 const canvas = document.getElementById('simulation');
 const pincel = canvas.getContext('2d');
-const W = canvas.width, H = canvas.height; // para colisões com a caixa
+const W = canvas.width, H = canvas.height; // para colisões com a caixa e para a draw
 
 // Parâmetros
 const g = 9.8;
