@@ -9,27 +9,21 @@
 <body>
     <h1>Desafio <button id="button1"> <h1>3</h1> </button></h1>
     <h3>Utilizando o path do SVG</h3>
-    <button id="button2" onclick="movimento">Estica</button>
-    <button id="button2">Aumenta</button>
+    <button id="button2">Estica</button>
+    <button id="button3">Aumenta</button>
 
     <div>
-        <script>
-            var a = 85;
-            function movimento() {
-                a = 100
-            }
-        </script>
-
-        <svg viewBox="0 0 240 240">
+        <svg viewBox="0 0 340 340">
         <path d="M 5,30
            A 20,20 0,0,1 50,30
            A 20,20 0,0,1 95,30
-           Q 95,60 50,a
-           Q 5,60 5,30 z"></path>
+           Q 95,60 50,80
+           Q 5,60 5,30 z" id="cora"></path>
         </svg>
     </div>
+
     <div>
-        
+        <script src="editando_d.js"></script>
     </div>
     
 </body>
