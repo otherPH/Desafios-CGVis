@@ -18,10 +18,8 @@ body {
 }
 
 #button1:active {
-    transform: scale(1.18);
-    animation-name: spin;
-    animation-duration: 0.8s;
-    animation-iteration-count: 1
+    transform: scale(1.18);;
+    animation-iteration-count: 1;
 }
 
 #button1:hover {
