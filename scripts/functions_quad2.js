@@ -1,57 +1,81 @@
-// definindo elementos
-const canvas = document.getElementById("Canvas2");
-const render = canvas.getContext("2d");
+const canvas2 = document.getElementById("Canvas2");
+const render2 = canvas2.getContext("2d");
 
-const eps = 14;
-
-let x = 0;
-let y = 0;
+// Versão do Claude utilizando aritmética de intervalos
 
 
-// Verifica se estamos em um ponto do gráfico da função
-function ver_f(f,x,y) {
-   return -eps <= f(x,y) && f(x,y) <= eps;
+// ---------- Aritmética de intervalos ----------
+class Interval {
+    constructor(lo, hi) { this.lo = lo; this.hi = hi; }
+    static from(v) { return v instanceof Interval ? v : new Interval(v, v); }
+    // permite comparações como `-eps <= f(x,y)` continuarem funcionando
+    // quando o intervalo é degenerado (lo === hi), como no caso escalar
+    valueOf() { return this.lo === this.hi ? this.lo : NaN; }
 }
 
-// Funções implícitas
-function desenhar_arco(x,y) {
-   return (x - 400)**2 + (y - 1000)**2 - 121000;
+function add(a, b) {
+    a = Interval.from(a); b = Interval.from(b);
+    return new Interval(a.lo + b.lo, a.hi + b.hi);
+}
+function sub(a, b) {
+    a = Interval.from(a); b = Interval.from(b);
+    return new Interval(a.lo - b.hi, a.hi - b.lo);
+}
+function mul(a, b) {
+    a = Interval.from(a); b = Interval.from(b);
+    const p = [a.lo * b.lo, a.lo * b.hi, a.hi * b.lo, a.hi * b.hi];
+    return new Interval(Math.min(...p), Math.max(...p));
+}
+function pow2(a) {
+    a = Interval.from(a);
+    if (a.lo >= 0) return new Interval(a.lo * a.lo, a.hi * a.hi);
+    if (a.hi <= 0) return new Interval(a.hi * a.hi, a.lo * a.lo);
+    return new Interval(0, Math.max(a.lo * a.lo, a.hi * a.hi));
 }
 
+// ---------- Funções implícitas reescritas p/ intervalos ----------
+function desenhar_arco(x, y) {
+    // (x-400)^2 + (y-400)^2 - 121000
+    return sub(add(pow2(sub(x, 400)), pow2(sub(y, 400))), 121000);
+}
 
-// Renderização
-let f = desenhar_arco;
+function desenhar_linear_quebrada(x, y) {
+    x = Interval.from(x);
+    y = Interval.from(y);
+    const branch1 = () => sub(x, mul(2, y)); // x - 2y  (quando x <= y)
+    const branch2 = () => sub(x, y);         // x - y   (quando x > y)
 
-// Classificação
+    if (x.hi <= y.lo) return branch1();       // caixa inteira satisfaz x<=y
+    if (x.lo > y.hi)  return branch2();       // caixa inteira satisfaz x>y
+    // a caixa cruza a fronteira x==y: une os dois ramos conservadoramente
+    const b1 = branch1(), b2 = branch2();
+    return new Interval(Math.min(b1.lo, b2.lo), Math.max(b1.hi, b2.hi));
+}
 
+// ---------- Classificação por intervalo ----------
 function classificar(x, y, f, tam) {
-   const c1 = f(x, y), c2 = f(x+tam, y), c3 = f(x+tam, y+tam), c4 = f(x, y+tam);
-   if (c1 < 0 && c2 < 0 && c3 < 0 && c4 < 0) return 0;
-   if (c1 > 0 && c2 > 0 && c3 > 0 && c4 > 0) return 0;
-   return 1; 
+    const resultado = f(new Interval(x, x + tam), new Interval(y, y + tam));
+    // a célula é "ativa" se o intervalo de f tocar a faixa [-eps, eps]
+    return (resultado.hi >= -eps && resultado.lo <= eps) ? 1 : 0;
 }
 
-// Percorrer e pintar a quadtree
-
-function percorrer_quadtree(x, y, profundidade, profundidade_maxima, f) {     
-    let tam = canvas.width/(2**(profundidade_maxima - profundidade + 1));
-    const quadrantes = [ [x, y], [x + tam, y], [x + tam, y + tam], [x, y + tam]];
+// ---------- Percorrer quadtree (praticamente igual) ----------
+function percorrer_quadtree(x, y, profundidade, profundidade_maxima, f) {
+    let tam = canvas2.width / (2 ** (profundidade_maxima - profundidade + 1));
+    const quadrantes = [[x, y], [x + tam, y], [x + tam, y + tam], [x, y + tam]];
     for (const [qx, qy] of quadrantes) {
         const estado = classificar(qx, qy, f, tam);
-        if (estado == 0) continue;
-        if (profundidade > 0) { 
+        if (estado === 0) continue;
+        if (profundidade > 0) {
             percorrer_quadtree(qx, qy, profundidade - 1, profundidade_maxima, f);
         } else {
-            render.fillStyle = "black";
-            render.fillRect(qx, qy, tam, tam);
-        }        
+            render2.fillStyle = "black";
+            render2.fillRect(qx, qy, tam, tam);
+        }
     }
-   return [x, y, tam];
+    return [x, y, tam];
 }
 
-// Rodar
-
-//renderizar(f);
-
-const profund = 5;
-percorrer_quadtree(0, 0, profund, profund, f);
+const f_implicita = desenhar_arco;
+const profundo = 3;
+percorrer_quadtree(0, 0, profundo, profundo, f_implicita)
