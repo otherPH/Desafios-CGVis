@@ -1,0 +1,101 @@
+/*
+Nova versão do style_mains
+*/
+
+
+/*
+Aqui, vou aprender a criar um ':root' 
+
+1. Para o que ele serve?
+2. O que posso aproveitar dele em outros elementos?
+
+*/
+body {
+    padding: 1%;
+    width: 900px;
+    height: 600px;
+    background-color: rgb(255, 254, 228);
+}
+
+#button1 {
+    font-size: 13px;
+    font-family: 'Courier New', monospace;
+    padding-left: 4%;
+    border-radius: 20px;
+    border: transparent;
+    color: black;
+    background-image: url("../Desafio3/tri_b.svg");
+    background-color: transparent;
+    background-size: 180px 200px;
+    width: 150px;
+    height: 188px;
+    background-repeat: no-repeat;
+}
+
+#button1:active {
+    transform: scale(1.18);
+    animation-name: spin;
+    animation-duration: 0.8s;
+    animation-iteration-count: 1
+}
+
+#button1:hover {
+    cursor: pointer;
+    transform-origin: center;
+    animation-name: spin;
+    animation-duration: 0.2s;
+    animation-iteration-count: 1;
+}
+
+#button2 {
+    font-size: 18px;
+    font-family: 'Courier New', monospace;
+    border-radius: 20px;
+    border: transparent;
+    color: black;
+    background-image: url("../Desafio3/rect_b.svg");
+    background-color: transparent;
+    background-size: 155px 100px;
+    width: 160px;
+    height: 100px;
+    background-repeat: no-repeat;
+}
+
+#button2:active {
+    transform: scale(1.18);
+    animation-name: spin;
+    animation-duration: 0.8s;
+    animation-iteration-count: 1;
+
+}
+
+#button2:hover {
+    cursor: pointer;
+    transform-origin: center;
+    animation-name: spin;
+    animation-duration: 0.2s;
+    animation-iteration-count: 1;
+}
+
+@keyframes spin{
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(10deg);
+    }
+}
+
+/*
+Barra de Navegação 
+*/
+
+/* Aqui vou configurar o estilo da minha barra de navegação,
+ul significa Unordered List */
+.nav ul{ 
+    display: flex;
+    gap: 10px;
+}
+
+
+
